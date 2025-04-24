@@ -72,7 +72,7 @@ WSGI_APPLICATION = "octofit_tracker.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# Database configuration
+# Adicionando o mecanismo de banco de dados djongo e outras configurações necessárias
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
@@ -82,27 +82,18 @@ DATABASES = {
     }
 }
 
-# CORS configuration
 INSTALLED_APPS += [
+    'rest_framework',
+    'djongo',
     'corsheaders',
+    'octofit_tracker',
 ]
 
-MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
+MIDDLEWARE += [
+    'corsheaders.middleware.CorsMiddleware',
+]
 
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_METHODS = [
-    'GET',
-    'POST',
-    'PUT',
-    'PATCH',
-    'DELETE',
-    'OPTIONS',
-]
-CORS_ALLOW_HEADERS = [
-    'content-type',
-    'authorization',
-    'x-csrftoken',
-]
 
 
 # Password validation
