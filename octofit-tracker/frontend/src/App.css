@@ -1,0 +1,69 @@
+body {
+  background-color: #f0f8ff; /* Light blue background */
+  color: #333; /* Dark text color */
+  font-family: Arial, sans-serif;
+}
+
+nav.navbar {
+  background-color: #4caf50; /* Green navigation menu */
+}
+
+nav.navbar .navbar-brand {
+  color: white;
+  font-weight: bold;
+}
+
+nav.navbar .nav-link {
+  color: white;
+}
+
+nav.navbar .nav-link:hover {
+  color: #ffeb3b; /* Yellow on hover */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #4caf50; /* Green headings */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  color: #333;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table th {
+  background-color: #4caf50;
+  color: white;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049; /* Darker green */
+}
+
+.App-link {
+  color: #4caf50; /* Green links */
+}
+
+.App-link:hover {
+  color: #ffeb3b; /* Yellow on hover */
+}
+
+.logo {
+  height: 50px;
+  margin-right: 10px;
+}
