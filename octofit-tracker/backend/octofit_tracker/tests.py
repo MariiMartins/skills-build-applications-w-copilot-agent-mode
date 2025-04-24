@@ -1,44 +1,49 @@
 from django.test import TestCase
+from rest_framework.test import APIClient
+from rest_framework import status
 from .models import User, Team, Activity, Leaderboard, Workout
 
+class UserTests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.user_data = {'username': 'testuser', 'email': 'testuser@example.com', 'password': 'password123'}
 
-class UserModelTest(TestCase):
     def test_create_user(self):
-        user = User.objects.create(
-            username="testuser", email="test@example.com", password="password"
-        )
-        self.assertEqual(user.username, "testuser")
+        response = self.client.post('/api/users/', self.user_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+class TeamTests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.team_data = {'name': 'Test Team', 'members': []}
 
-class TeamModelTest(TestCase):
     def test_create_team(self):
-        team = Team.objects.create(name="Test Team")
-        self.assertEqual(team.name, "Test Team")
+        response = self.client.post('/api/teams/', self.team_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+class ActivityTests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.activity_data = {'activity_type': 'Running', 'duration': '01:00:00'}
 
-class ActivityModelTest(TestCase):
     def test_create_activity(self):
-        user = User.objects.create(
-            username="testuser", email="test@example.com", password="password"
-        )
-        activity = Activity.objects.create(
-            user=user, activity_type="Running", duration="01:00:00"
-        )
-        self.assertEqual(activity.activity_type, "Running")
+        response = self.client.post('/api/activities/', self.activity_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+class LeaderboardTests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.leaderboard_data = {'score': 100}
 
-class LeaderboardModelTest(TestCase):
     def test_create_leaderboard_entry(self):
-        user = User.objects.create(
-            username="testuser", email="test@example.com", password="password"
-        )
-        leaderboard = Leaderboard.objects.create(user=user, score=100)
-        self.assertEqual(leaderboard.score, 100)
+        response = self.client.post('/api/leaderboard/', self.leaderboard_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+class WorkoutTests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.workout_data = {'name': 'Test Workout', 'description': 'Test Description'}
 
-class WorkoutModelTest(TestCase):
     def test_create_workout(self):
-        workout = Workout.objects.create(
-            name="Test Workout", description="Test Description"
-        )
-        self.assertEqual(workout.name, "Test Workout")
+        response = self.client.post('/api/workouts/', self.workout_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
